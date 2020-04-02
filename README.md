@@ -1,6 +1,15 @@
 
 # Simple HTTP endpoint to test webhook
 
+### Install serverless cli 
+
+```
+npm install -g serverless 
+```
+
+### Install and configure AWS CLI 
+
+
 ### Depooy to AWS  
 
 ```
