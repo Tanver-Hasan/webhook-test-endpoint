@@ -22,3 +22,22 @@ serverless deploy
 serverless logs -f functionname
 ```
 
+### Exposed Endpoints
+
+```
+POST - https://{aws_url}.amazonaws.com/hook
+GET - https://{aws_url}.amazonaws.com/hook/{timer}   // timer in seconds - 10 seconds
+```
+
+### Configure AWS  HTTP API Authorizer 
+
+```
+
+    authorizers:
+      Auth0:
+        identitySource: $request.header.Authorization
+        issuerUrl: {Issuer URL}
+        audience:
+          - {API Identifer}
+
+```
