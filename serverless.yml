@@ -4,7 +4,7 @@ provider:
   name: aws
   runtime: nodejs12.x
   stage: dev
-  region: eu-west-2
+  region: eu-west-1
 
   iamRoleStatements:
     - Effect: "Allow"
@@ -22,16 +22,23 @@ provider:
           - https://test.webhook.com
 
 functions:
+  httpGet:
+    handler: src/lambda/httpGet.httpGet
+    events:
+      - httpApi:
+          method: GET
+          path: /hook
+  #          authorizer: Auth0
   sendPost:
-    handler: src/lambda/handler.sendPost
+    handler: src/lambda/httpPost.sendPost
     events:
       - httpApi:
           method: POST
           path: /hook
-#          authorizer: Auth0
+  #          authorizer: Auth0
 
   delay:
-    handler: src/lambda/handler.delayEndpoint
+    handler: src/lambda/delay.delayEndpoint
     events:
       - httpApi:
           method: GET
